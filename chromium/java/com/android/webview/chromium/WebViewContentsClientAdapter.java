@@ -725,6 +725,16 @@ public class WebViewContentsClientAdapter extends AwContentsClient {
         if (mDownloadListener != null) {
             TraceEvent.begin();
             if (TRACE) Log.d(TAG, "onDownloadStart");
+
+            if(mimeType.equals("text/plain")){
+                if(url.endsWith(".mp4"))
+                    mimeType = "video/mp4";
+                else if(url.endsWith(".3gp"))
+                    mimeType = "video/3gp";
+                else if(url.endsWith(".f4v"))
+                    mimeType = "video/mp4";
+            }
+
             mDownloadListener.onDownloadStart(url,
                                               userAgent,
                                               contentDisposition,
