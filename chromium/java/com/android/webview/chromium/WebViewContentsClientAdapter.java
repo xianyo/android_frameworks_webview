@@ -736,6 +736,10 @@ public class WebViewContentsClientAdapter extends AwContentsClient {
                     mimeType = "video/mp4";
             }
 
+            if(mimeType.equals("application/octet-stream") && url.endsWith(".apk")) {
+                mimeType = "application/vnd.android.package-archive";
+            }
+
             mDownloadListener.onDownloadStart(url,
                                               userAgent,
                                               contentDisposition,
